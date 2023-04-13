@@ -1,0 +1,4 @@
+exports.liveStreaming = {
+   stream: true
+}
+

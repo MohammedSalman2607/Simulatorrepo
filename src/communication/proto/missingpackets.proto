@@ -1,0 +1,77 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.vigo.missingpac.grpc";
+option java_outer_classname = "MissingPacServiceProto";
+
+
+service MissingPacketService {
+    rpc UpdatePackets(LimitVariables) returns (Empty);
+
+    rpc  GetMissingPackets(MissingPacketRequest) returns (MissingPacketResponse);
+
+    rpc  SaveBroadcastJson(BroadcastJson) returns (Response);
+
+    rpc  GetCompletePatchData(RequestedSeq) returns(LastSeq);
+}
+
+message LimitVariables {
+    string caseNumber = 1;
+    int32 startSequence = 2;
+    int32 endSequence = 3;
+
+}
+
+message MissingPacketRequest {
+    string type = 1; // RANGE OR ARRAY
+    int32  start = 2;
+    int32  limit = 3;
+    string caseNumber = 4;
+}
+
+message  MissingPacketResponse {
+    string type = 1;
+    repeated int32 packetArray = 2;
+    repeated MissingPacketRange missingPacketRange = 3;
+}
+
+message MissingPacketRange{
+    int32 to = 1;
+    int32 from = 2;
+}
+
+message Empty{}
+
+message BroadcastJson{
+    string caseNumber = 1;
+    string patchId = 2;
+    string broadcastJsonValue = 3;
+}
+
+message Response{
+    string message = 1;
+}
+
+message RequestedSeq{
+    string caseNumber = 1;
+    int32 start = 2;
+    int32 limit = 3;
+}
+
+message LastSeq{
+    string caseNumber = 1;
+    int32 seqNumber = 2;
+}
+
+//message  PatchDataList{
+//    repeated  PatchDataPerSeq patchDataPerSeq = 1;
+//}
+//
+//
+//message PatchDataPerSeq{
+//    string caseNumber = 1;
+//    string patchId = 2;
+//    int32  seq = 3;
+//    string patchDataPerSeq = 4;
+//
+//}

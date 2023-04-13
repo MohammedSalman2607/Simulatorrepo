@@ -1,0 +1,42 @@
+//#service-request-reply
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.vigo.service";
+option java_outer_classname = "IngestionServiceProto";
+
+// The greeting service definition.
+service IngestionService {
+ //sends the ingestion data
+ rpc IngestData(DataPacket) returns (ServerReply){}
+ rpc LiveStream(DataPacket) returns (ServerReply){}
+ rpc heartBeat(ServerReply) returns (ServerReply){}
+}
+
+message DataPacket {
+  string caseNumber = 1;
+  string patchId = 2;
+  string liveStreamStartTime=3;
+  repeated SensorData sensorData = 4;
+}
+
+message SensorData {
+    int32 Seq = 1;
+    repeated int32 ECG0 = 2;
+    repeated int32 ECG1 = 3;
+    repeated int32 Accel = 4;
+    repeated int32 Respiration = 5;
+    int32 vBat = 6;
+    int32 IAGain = 7;
+    int32 LeadStatus = 8;
+    int32 RLDInformation = 9;
+    int32 Temperature = 10;
+    int64 TsECG = 11;
+}
+
+message ServerReply {
+  string servermsg =1;
+  int32 batchStart=2;
+  int32 batchEnd=3;
+}
+

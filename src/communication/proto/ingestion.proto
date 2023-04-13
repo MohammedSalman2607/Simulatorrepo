@@ -1,0 +1,24 @@
+syntax = "proto3";
+option java_multiple_files=true;
+
+
+
+option java_package = "com.vigo.datastream";
+option java_outer_classname ="IngestionServiceProto";
+
+service IngestionService {
+  rpc ingestDataPacket(DataPacketRequest) returns (DataPacketResponse) {};
+}
+
+message DataPacketRequest {
+  string caseNumber = 1;
+  string patchId = 2;
+  string deviceName = 3;
+  repeated string data = 4;
+  string version = 5;
+}
+
+message DataPacketResponse {
+  string servermsg = 1;
+  repeated int64 ingestedTimeStamps = 2;
+}

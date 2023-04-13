@@ -1,0 +1,26 @@
+{
+  "name": "simulator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "@grpc/grpc-js": "^1.2.8",
+    "@grpc/proto-loader": "^0.5.4",
+    "adm-zip": "^0.4.14",
+    "chalk": "^3.0.0",
+    "grpc": "^1.24.11",
+    "lodash": "^4.17.15",
+    "moment": "^2.27.0",
+    "mqtt": "^3.0.0",
+    "node-zip": "^1.1.1",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.5",
+    "winston": "^3.2.1",
+    "yargs": "^17.5.1"
+  }
+}
